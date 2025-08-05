@@ -1,5 +1,9 @@
 # Log-Visualization-Maps
 
+This project uses Azure log queries combined with custom geolocation data to visualize various security events—such as successful and failed authentications, resource creation, VM logon failures, and malicious network traffic—on a map. By mapping IP addresses to geographic locations, it helps uncover patterns, detect anomalies, and identify potential threat sources across the environment. These visualizations support threat hunting, security monitoring, and incident response by providing clear geographic context to raw log data.
+
+---
+
 ### Entra ID (Azure) Authentication Success
 
 This query visualizes successful Entra ID (Azure AD) sign-ins by mapping user login locations based on geolocation data. It helps identify where users are authenticating from globally, offering insight into access patterns and potential anomalies. Ideal for use in threat hunting dashboards or security monitoring.
