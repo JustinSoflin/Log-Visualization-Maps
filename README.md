@@ -61,3 +61,18 @@ AzureActivityRecords
 
 <img width="1824" height="930" alt="image" src="https://github.com/user-attachments/assets/0ab83d5d-30f8-4685-a338-892255eb6200" />
 
+---
+
+
+
+```kql
+let GeoIPDB_FULL = _GetWatchlist("geoip");
+DeviceLogonEvents
+| where ActionType == "LogonFailed"
+| order by TimeGenerated desc
+| evaluate ipv4_lookup(GeoIPDB_FULL, RemoteIP, network)
+| summarize LoginAttempts = count() by RemoteIP, City = cityname, Country = countryname, friendly_location = strcat(cityname, " (", RemoteIP, ")"), Latitude = latitude, Longitude = longitude;
+```
+
+<img width="1720" height="935" alt="image" src="https://github.com/user-attachments/assets/b9bdeda8-bd60-4d36-83aa-edc4b7fff6f7" />
+
