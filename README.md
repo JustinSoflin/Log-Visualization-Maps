@@ -1,5 +1,7 @@
 # Log-Visualization-Maps
 
+Entra ID (Azure) Authentication Success
+
 **Query used to locate events:**
 
 ```kql
@@ -20,6 +22,8 @@ Country = tostring(LocationDetails["countryOrRegion"])
 
 ---
 
+Entra ID (Azure) Authentication Failures
+
 **Query used to locate events:**
 
 
@@ -36,7 +40,9 @@ SigninLogs
 
 ---
 
+Azure Resource Creation
 
+**Query used to locate events:**
 
 
 ```kql
@@ -63,6 +69,9 @@ AzureActivityRecords
 
 ---
 
+VM Authentication Failures
+
+**Query used to locate events:**
 
 
 ```kql
@@ -76,3 +85,24 @@ DeviceLogonEvents
 
 <img width="1720" height="935" alt="image" src="https://github.com/user-attachments/assets/b9bdeda8-bd60-4d36-83aa-edc4b7fff6f7" />
 
+---
+
+Malicious Traffic Entering the Network
+
+**Query used to locate events:**
+
+
+```kql
+let GeoIPDB_FULL = _GetWatchlist("geoip");
+let MaliciousFlows = AzureNetworkAnalytics_CL 
+| where FlowType_s == "MaliciousFlow"
+//| where SrcIP_s == "10.0.0.5" 
+| order by TimeGenerated desc
+| project TimeGenerated, FlowType = FlowType_s, IpAddress = SrcIP_s, DestinationIpAddress = DestIP_s, DestinationPort = DestPort_d, Protocol = L7Protocol_s, NSGRuleMatched = NSGRules_s;
+MaliciousFlows
+| evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, network)
+| project TimeGenerated, FlowType, IpAddress, DestinationIpAddress, DestinationPort, Protocol, NSGRuleMatched, latitude, longitude, city = cityname, country = countryname, friendly_location = strcat(cityname, " (", countryname, ")")
+```
+
+
+<img width="1735" height="932" alt="image" src="https://github.com/user-attachments/assets/32c1fa7c-ffba-45af-b631-15003ec7bd01" />
