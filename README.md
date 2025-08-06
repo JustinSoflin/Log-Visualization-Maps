@@ -6,7 +6,7 @@ This project uses Azure log queries combined with custom geolocation data to vis
 
 # Table of Contents
 
-- [Entra ID (Azure) Authentication Success](#entra-id--azure--authentication-success)
+- [Entra ID (Azure) Authentication Success](#entra-id-azure-authentication-success)
 - [Entra ID (Azure) Authentication Failures](#entra-id--azure--authentication-failures)
 - [Azure Resource Creation](#azure-resource-creation)
 - [VM Authentication Failures](#vm-authentication-failures)
