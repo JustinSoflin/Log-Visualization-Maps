@@ -4,6 +4,12 @@ This project uses Azure log queries combined with custom geolocation data to vis
 
 ---
 
+# Tools Utilized
+- Kusto Query Language (KQL)
+- Azure Workbooks
+  
+---
+
 # Table of Contents
 
 - [Entra ID (Azure) Authentication Success](#entra-id-azure-authentication-success)
