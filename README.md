@@ -4,6 +4,16 @@ This project uses Azure log queries combined with custom geolocation data to vis
 
 ---
 
+# Table of Contents
+
+- [Entra ID (Azure) Authentication Success](#entra-id--azure--authentication-success)
+- [Entra ID (Azure) Authentication Failures](#entra-id--azure--authentication-failures)
+- [Azure Resource Creation](#azure-resource-creation)
+- [VM Authentication Failures](#vm-authentication-failures)
+- [Malicious Traffic Entering the Network](#malicious-traffic-entering-the-network)
+
+---
+
 ### Entra ID (Azure) Authentication Success
 
 This query visualizes successful Entra ID (Azure AD) sign-ins by mapping user login locations based on geolocation data. It helps identify where users are authenticating from globally, offering insight into access patterns and potential anomalies. Ideal for use in threat hunting dashboards or security monitoring.
@@ -92,6 +102,7 @@ DeviceLogonEvents
 <kbd>
 <img width="1500" alt="image" src="https://github.com/user-attachments/assets/b9bdeda8-bd60-4d36-83aa-edc4b7fff6f7" />
 </kbd>
+
 ---
 
 ### Malicious Traffic Entering the Network
@@ -111,6 +122,7 @@ MaliciousFlows
 | evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, network)
 | project TimeGenerated, FlowType, IpAddress, DestinationIpAddress, DestinationPort, Protocol, NSGRuleMatched, latitude, longitude, city = cityname, country = countryname, friendly_location = strcat(cityname, " (", countryname, ")")
 ```
+
 <kbd>
 <img width="1500" alt="image" src="https://github.com/user-attachments/assets/32c1fa7c-ffba-45af-b631-15003ec7bd01" />
 </kbd>
